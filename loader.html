@@ -9,7 +9,8 @@
     var u = new URLSearchParams(location.search).get("url");
     var norm = function (x) { return (x || "").replace(/\/+$/, "").replace(/\/index\.html$/, ""); };
     var g = GAMES.filter(function (g) { return norm(g.url) === norm(u); })[0];
-    location.replace(g ? "play.html?g=" + encodeURIComponent(g.id) : "index.html");
+    
+    location.replace(g ? "/5-dollar-games/schoolwork?g=" + encodeURIComponent(g.id) : "index.html");
   </script>
 </head>
 <body></body>
