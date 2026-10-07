@@ -1,0 +1,160 @@
+:root {
+  --bg: #101024;
+  --s1: #1b1b3a;
+  --s2: #2a2a55;
+  --tx: #f1f0ff;
+  --mu: #9a98c8;
+  --ac: #ffcf4a;
+  --ac2: #8a6bff;
+  --r: 22px;
+}
+
+* { box-sizing: border-box; margin: 0; }
+html { color-scheme: dark; }
+body {
+  min-height: 100vh;
+  padding-bottom: 110px;
+  color: var(--tx);
+  font: 500 16px/1.5 ui-rounded, "SF Pro Rounded", "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: radial-gradient(900px 500px at 15% -10%, #2a2266 0, transparent 65%) no-repeat, var(--bg);
+}
+a { color: inherit; text-decoration: none; }
+[hidden] { display: none !important; }
+
+/* ---------- icons ---------- */
+.ic { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
+
+/* ---------- icon button (used everywhere) ---------- */
+.ib {
+  position: relative;
+  display: grid; place-items: center;
+  width: 48px; height: 48px;
+  border: 0; border-radius: 18px;
+  background: transparent; color: var(--tx);
+  cursor: pointer;
+  transition: transform .18s cubic-bezier(.3, 1.6, .5, 1), background-color .18s, color .18s;
+}
+.ib::after {
+  content: attr(aria-label);
+  position: absolute; bottom: calc(100% + 10px); left: 50%;
+  padding: 4px 10px; border-radius: 10px;
+  background: #000; color: #fff; font-size: 12px; white-space: nowrap;
+  opacity: 0; transform: translate(-50%, 4px); pointer-events: none;
+  transition: opacity .15s, transform .15s;
+}
+.ib:active { transform: scale(.9); }
+.ib:focus-visible { outline: 2px solid var(--ac); outline-offset: 2px; }
+.ib:focus-visible::after { opacity: 1; transform: translate(-50%, 0); }
+@media (hover: hover) {
+  .ib:hover { transform: translateY(-4px) scale(1.1); background: var(--s2); color: var(--ac); }
+  .ib:hover::after { opacity: 1; transform: translate(-50%, 0); }
+  .ib.danger:hover { color: #ff6b6b; }
+}
+
+/* ---------- home page ---------- */
+.top {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  max-width: 1200px; margin: 0 auto; padding: 20px clamp(16px, 4vw, 40px);
+}
+.brand { display: flex; align-items: center; gap: 10px; font-size: 22px; font-weight: 800; letter-spacing: -.02em; }
+.mark {
+  display: grid; place-items: center; width: 36px; height: 36px; border-radius: 13px; color: var(--bg);
+  background: linear-gradient(135deg, var(--ac), var(--ac2));
+}
+.mark .ic { width: 20px; height: 20px; stroke-width: 2.4; }
+
+.search {
+  display: flex; align-items: center; gap: 8px;
+  width: min(320px, 55vw); height: 44px; padding: 0 16px;
+  border-radius: 999px; background: var(--s1); color: var(--mu);
+}
+.search:focus-within { box-shadow: 0 0 0 2px var(--ac); color: var(--ac); }
+.search .ic { width: 20px; height: 20px; flex: none; }
+.search input {
+  flex: 1; min-width: 0; border: 0; outline: 0; background: transparent;
+  color: var(--tx); font: inherit;
+}
+.search input::placeholder { color: var(--mu); }
+
+main { max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); }
+
+.grid {
+  display: grid; gap: 16px; grid-auto-flow: dense;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+@media (max-width: 480px) {
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+}
+
+.tile {
+  position: relative; display: block; overflow: hidden;
+  aspect-ratio: 1; border-radius: var(--r); background: var(--s1);
+  content-visibility: auto; contain-intrinsic-size: auto 160px;
+  transition: transform .2s cubic-bezier(.3, 1.4, .5, 1), box-shadow .2s;
+}
+.tile.big { grid-column: span 2; grid-row: span 2; }
+.grid.q .tile.big { grid-column: auto; grid-row: auto; }
+.tile[hidden] { display: none; }
+
+.tile .ph {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  font-size: 48px; font-weight: 800; color: var(--s2);
+}
+.tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.tile .nm {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 30px 12px 10px;
+  background: linear-gradient(transparent, rgba(8, 8, 24, .88));
+  font-size: 14px; font-weight: 700;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.tile.big .nm { font-size: 18px; padding: 44px 16px 14px; }
+.tile:focus-visible { outline: 3px solid var(--ac); outline-offset: 2px; }
+@media (hover: hover) {
+  .tile:hover { transform: translateY(-5px) scale(1.03); box-shadow: 0 14px 28px rgba(0, 0, 0, .45); }
+}
+.tile:active { transform: scale(.97); }
+
+.empty { padding: 60px 0; text-align: center; color: var(--mu); }
+
+/* ---------- floating dock ---------- */
+.dock, .bar {
+  display: flex; align-items: center; gap: 8px; padding: 8px;
+  background: var(--s1); border-radius: 28px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .4);
+}
+.dock { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 10; }
+
+/* ---------- play page ---------- */
+body.play {
+  display: flex; flex-direction: column; gap: 12px;
+  height: 100vh; height: 100dvh; padding: 12px; overflow: hidden;
+}
+.stage { position: relative; flex: 1; min-height: 0; overflow: hidden; border-radius: 26px; background: #000; }
+.stage iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.stage .msg { position: absolute; inset: 0; display: grid; place-items: center; color: var(--mu); }
+.stage:fullscreen { border-radius: 0; }
+.bar { align-self: center; padding: 6px; }
+
+.gate { position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; background: var(--bg); padding: 16px; }
+.gate form {
+  display: flex; flex-direction: column; gap: 14px; align-items: center;
+  width: min(340px, 100%); padding: 28px; border-radius: 28px; background: var(--s1);
+}
+.gate h1 { font-size: 20px; }
+.gate input {
+  width: 100%; height: 48px; padding: 0 16px; border: 2px solid var(--s2); border-radius: 16px;
+  background: var(--bg); color: var(--tx); font: inherit; text-align: center; outline: 0;
+}
+.gate input:focus { border-color: var(--ac); }
+.gate .go {
+  width: 100%; height: 48px; border: 0; border-radius: 16px; cursor: pointer;
+  background: var(--ac); color: var(--bg); font: 800 16px inherit; font-family: inherit;
+  transition: transform .15s;
+}
+.gate .go:active { transform: scale(.96); }
+.gate .err { min-height: 1.2em; color: #ff7b7b; font-size: 14px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

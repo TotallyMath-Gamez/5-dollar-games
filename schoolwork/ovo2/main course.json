@@ -1,0 +1,67 @@
+{
+	"name": "Main course",
+	"image": "",
+	"chapters": [
+		{
+			"name": "Tutorial",
+			"image": "",
+			"levels": [
+				{
+					"name": "My super level",
+					"width": 2560,
+					"height": 2560,
+					"objects": [
+						{
+							"name": "Solid",
+							"x": 100,
+							"y": 100,
+							"width": 200,
+							"height": 8,
+							"angle": 0
+						},
+						{
+							"name": "Solid",
+							"x": 400,
+							"y": 200,
+							"width": 300,
+							"height": 8,
+							"angle": 0
+						},
+						{
+							"name": "Bouncy",
+							"x": 700,
+							"y": 250,
+							"width": 100,
+							"height": 8,
+							"angle": 0
+						},
+						{
+							"name": "Spikes",
+							"x": 900,
+							"y": 300,
+							"width": 100,
+							"height": 8,
+							"angle": 0
+						},
+						{
+							"name": "Checkpoint",
+							"x": 1200,
+							"y": 350,
+							"width": 50,
+							"height": 8,
+							"angle": 0
+						},
+						{
+							"name": "Goal",
+							"x": 1500,
+							"y": 400,
+							"width": 100,
+							"height": 8,
+							"angle": 0
+						}
+					]
+				}
+			]
+		}
+	]
+}

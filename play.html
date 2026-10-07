@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google</title>
+  <link rel="icon" id="fav" href="imgs/google.jpg">
+  <link rel="stylesheet" href="css/style.css?v=3">
+</head>
+<body class="play">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-reload" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v4h-4"/></symbol>
+  <symbol id="i-full" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2L12 3zM12 10v5M12 18h.01"/></symbol>
+</svg>
+
+<div class="stage" id="stage">
+  <div class="msg" id="msg">Loading…</div>
+  <iframe id="frame" title="Game"
+          allow="fullscreen; autoplay; gamepad; clipboard-write"
+          sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-forms"></iframe>
+
+  <div class="gate" id="gate" hidden>
+    <form id="gateForm" onsubmit="return false" novalidate>
+      <h1>Password required</h1>
+      <input id="pw" type="password" placeholder="Enter password" autocomplete="off">
+      <div class="err" id="err"></div>
+      <button class="go" type="submit">Play</button>
+    </form>
+  </div>
+</div>
+
+<nav class="bar">
+  <a class="ib" href="index.html" aria-label="All games"><svg class="ic"><use href="#i-back"/></svg></a>
+  <button class="ib" id="bReload" aria-label="Restart game"><svg class="ic"><use href="#i-reload"/></svg></button>
+  <button class="ib" id="bFull"   aria-label="Fullscreen"><svg class="ic"><use href="#i-full"/></svg></button>
+  <button class="ib danger" id="bPanic" aria-label="Exit now"><svg class="ic"><use href="#i-alert"/></svg></button>
+</nav>
+
+<script src="js/games.js?v=3"></script>
+<script src="js/play.js?v=3"></script>
+</body>
+</html>

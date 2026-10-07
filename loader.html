@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Google</title>
+  <script src="js/games.js?v=3"></script>
+  <script>
+    // Old links like loader.html?url=/schoolwork/slope/index.html still work
+    var u = new URLSearchParams(location.search).get("url");
+    var norm = function (x) { return (x || "").replace(/\/+$/, "").replace(/\/index\.html$/, ""); };
+    var g = GAMES.filter(function (g) { return norm(g.url) === norm(u); })[0];
+    location.replace(g ? "play.html?g=" + encodeURIComponent(g.id) : "index.html");
+  </script>
+</head>
+<body></body>
+</html>
