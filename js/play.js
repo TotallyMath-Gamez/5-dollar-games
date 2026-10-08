@@ -17,17 +17,17 @@
         try { sessionStorage.setItem("ok", "1"); } catch (e) {} // Fixed infinite recursion crash
     } 
 
-    function start() { 
+       function start() { 
         gate.hidden = true; 
         
-        // REWRITE PATH FOR THE IFRAME:
-        // Converts a path like "/schoolwork/slope/index.html" 
-        // into "/5-dollar-games/schoolwork/slope/index.html"
         if (game && game.url) {
-            var updatedUrl = game.url.replace(/^\/?schoolwork/, '/5-dollar-games/schoolwork');
+            // FIX: This converts "...github.io/schoolwork/..." into "...github.io/5-dollar-games/schoolwork/..."
+            // It works for both full URLs and local absolute paths.
+            var updatedUrl = game.url.replace(/(\.github\.io|^)\/?schoolwork/, '$1/5-dollar-games/schoolwork');
             frame.src = updatedUrl; 
         }
     } 
+
 
     var form = document.getElementById("gateForm"); 
     form.addEventListener("submit", function (e) { e.preventDefault(); }); 
